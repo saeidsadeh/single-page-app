@@ -35,12 +35,22 @@
 
             <div class="col-md-3">
                 <p class="lead">BestBuy</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                <div class="list-group" id="categoryResult">
                 </div>
+                <script id="categoryTemplate" type="text/x-handlebars-template">
+
+                    {{#each this}}
+
+                    <div class="row">
+
+                        <a onclick="getCategoryProducts({{id}})" href="#" class="list-group-item">{{name}} ({{productCount}})</a>
+
+
+                    </div>
+                    {{/each}}
+                </script>
             </div>
+
 
             <div class="col-md-9">
 
@@ -72,7 +82,7 @@
             </div>
 
         </div>
-
+        </div>
     </div>
     <!-- /.container -->
 
@@ -98,6 +108,10 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- Handlebars JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>
