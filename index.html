@@ -90,16 +90,18 @@
 
         <div class="overlay"></div>
         <div class="preview-large">
-            <h3>{{name}}</h3>
-            {{#if highResImage}}
-            <img src="{{highResImage}}" alt="">
-            {{else}}
-            {{#if thumbnailImage}}
-            <img src="{{thumbnailImage}}" alt="">
-            {{else}}
-            <img src="images/highRes-no-image.jpg" alt="">
-            {{/if}}
-            {{/if}}
+            <h4>{{name}}</h4>
+            <div>
+                {{#if highResImage}}
+                    <img src="{{highResImage}}" alt="">
+                {{else}}
+                    {{#if thumbnailImage}}
+                        <img src="{{thumbnailImage}}" alt="">
+                    {{else}}
+                        <img src="images/highRes-no-image.jpg" alt="">
+                    {{/if}}
+                {{/if}}
+            </div>
 
             {{#if longDescription}}
             <p>{{longDescription}}</p>

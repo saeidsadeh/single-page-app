@@ -127,6 +127,17 @@ footer {
     color: #555;
     cursor: pointer;
 }
+.preview-large div{
+    text-align: center;
+}
+.preview-large div img{
+    max-width: 30%;
+    height: auto;
+}
+.preview-large h4{
+    padding: 20px 50px;
+}
+
 
 /*---------------------------
 	Error Page
