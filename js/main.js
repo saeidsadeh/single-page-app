@@ -56,6 +56,24 @@ function getCategoryProducts(id){
     });
 }
 
+// call ProductDetail API
+function getProductDetail(sku){
+
+    $.ajax({
+
+        url: 'http://www.bestbuy.ca/api/v2/json/product/'+sku,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'jsonp',
+        success: function(result) {
+
+            generateProductDetailTemp(result);
+        },
+        error: function() { $('.error').addClass('visible'); },
+
+    });
+}
+
 // generate Category template
 function generateCategoriesTemp(categories) {
     var source = $("#categoryTemplate").html();
@@ -73,3 +91,18 @@ function generateCategoryProductsTemp(products) {
     $('#productResults').html(html);
 
 }
+
+
+// generate Product Detail template
+function generateProductDetailTemp(product) {
+    var source = $("#productDetailTemplate").html();
+    var template = Handlebars.compile(source);
+    var html = template(product);
+    $('#productDetailResult').html(html);
+    $('.single-product').show();
+
+}
+
+// Close single product page after clicking the page
+$('.single-product').click( function(){$('.single-product').hide();})
+

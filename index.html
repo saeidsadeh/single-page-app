@@ -13,104 +13,143 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
 <body>
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-        <div class="row">
+    <div class="row">
+        <!-- All Categories -->
+        <div class="col-md-3">
+            <p class="lead">BestBuy</p>
+            <div class="list-group" id="categoryResult">
+            </div>
+            <script id="categoryTemplate" type="text/x-handlebars-template">
 
-            <div class="col-md-3">
-                <p class="lead">BestBuy</p>
-                <div class="list-group" id="categoryResult">
+                {{#each this}}
+
+                <div class="row">
+
+                    <a onclick="getCategoryProducts({{id}})" href="#" class="list-group-item">{{name}} ({{productCount}})</a>
+
+
                 </div>
-                <script id="categoryTemplate" type="text/x-handlebars-template">
+                {{/each}}
+            </script>
+        </div>
 
-                    {{#each this}}
-
-                    <div class="row">
-
-                        <a onclick="getCategoryProducts({{id}})" href="#" class="list-group-item">{{name}} ({{productCount}})</a>
+        <!-- All Products -->
+        <div class="col-md-9">
 
 
-                    </div>
-                    {{/each}}
-                </script>
+            <div id="productResults" class="row" >
+
             </div>
 
 
-            <div class="col-md-9">
+            <script id="productTemplate" type="text/x-handlebars-template">
+                {{#each this}}
 
-                <div id="productResults" class="row" >
+                <div  class="col-sm-3 col-lg-3 col-md-3" onclick="getProductDetail({{sku}})">
+                    <div class="thumbnail">
+                        {{#if thumbnailImage}}
+                        <img src="{{thumbnailImage}}" alt="">
+                        {{else}}
+                        <img src="images/thumbnail-no-image.jpg" alt="">
+                        {{/if}}
 
-                </div>
-
-
-                <script id="productTemplate" type="text/x-handlebars-template">
-                    {{#each this}}
-
-                    <div  class="col-sm-3 col-lg-3 col-md-3" onclick="getProductDetail({{sku}})">
-                        <div class="thumbnail">
-                            {{#if thumbnailImage}}
-                            <img src="{{thumbnailImage}}" alt="">
-                            {{else}}
-                            <img src="images/thumbnail-no-image.jpg" alt="">
-                            {{/if}}
-
-                            <div class="caption">
-                                <h4>${{regularPrice}}</h4>
-                                <p>{{name}}</p>
-                            </div>
-
+                        <div class="caption">
+                            <h4>${{regularPrice}}</h4>
+                            <p>{{name}}</p>
                         </div>
+
                     </div>
-                    {{/each}}
-                </script>
-
-        </div>
-        </div>
-    </div>
-    <!-- /.container -->
-
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Saeid Sadeh</p>
                 </div>
-            </div>
-        </footer>
+                {{/each}}
+            </script>
+        </div>
 
     </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <!-- Product Detail Modal -->
+    <div class="single-product visible" id="productDetailResult" >
+    </div>
+    <script id="productDetailTemplate" type="text/x-handlebars-template">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        <div class="overlay"></div>
+        <div class="preview-large">
+            <h3>{{name}}</h3>
+            {{#if highResImage}}
+            <img src="{{highResImage}}" alt="">
+            {{else}}
+            {{#if thumbnailImage}}
+            <img src="{{thumbnailImage}}" alt="">
+            {{else}}
+            <img src="images/highRes-no-image.jpg" alt="">
+            {{/if}}
+            {{/if}}
 
-    <!-- Handlebars JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+            {{#if longDescription}}
+            <p>{{longDescription}}</p>
+            {{else}}
+            <p>{{shortDescription}}</p>
+            {{/if}}
+            <span class="close">×</span>
+        </div>
+    </script>
+
+    <!-- Error Page -->
+    <div class="error page">
+        <h3>Sorry, something went wrong :(</h3>
+    </div>
+
+
+</div>
+<!-- /.container -->
+
+<div class="container">
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Saeid Sadeh 2017</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Handlebars JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+<!-- Custom JavaScript -->
+<script src="js/main.js"></script>
+
 </body>
 
 </html>
+
+
+
+
